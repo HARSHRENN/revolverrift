@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .primary-btn {
+    @apply bg-gradient-to-r from-primary to-secondary duration-300 py-2 px-6 text-white rounded-full hover:scale-105;
+  }
+}
+
+
+
+/* .animated-wrapper {
+  animation-name: move-wrapper;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  position: absolute;
+}
+
+@keyframes move-wrapper {
+  0% {
+    transform: translate(150%, 30%) rotate(0) scale(0.8);
+  }
+
+  50% {
+    transform: translate(60vw, 0vh) rotate(150deg) scale(1.2);
+  }
+
+  to {
+    transform: translate(40vw, 40vh) rotate(0deg) scale(0.8);
+  }
+} */
+
+@font-face {
+  font-family: 'CustomGameFont';
+  src: url('/src/assets/fonts/melma.cracked.ttf') format('truetype');
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+#root,
+main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+
+  /* Restore cursor for iframes or specific elements if needed later */
+}
