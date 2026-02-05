@@ -4,6 +4,7 @@ import crackedBox from '../../assets/image.png';
 import revolverTitle from '../../assets/IMG.png';
 import bgVideo2 from '../../assets/mp5.mp4';
 import SlantedGallery from './SlantedGallery';
+
 import ShopPreview from '../Shop/ShopPreview';
 
 const HeroCountdown = () => {
@@ -182,6 +183,7 @@ const HeroCountdown = () => {
             </section>
 
             <SlantedGallery />
+
 
             {/* Second Video Section */}
             <section className="relative w-full h-screen">

@@ -16,6 +16,10 @@ const Cursor = () => {
     const handleMouseOver = (e) => {
       // Check if the hovered element or its parents are interactive
       const target = e.target;
+
+      // Safety check: ensure target is an Element before accessing properties
+      if (!target || !(target instanceof Element)) return;
+
       if (
         target.tagName === "A" ||
         target.tagName === "BUTTON" ||

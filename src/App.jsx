@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom"; // BrowserRouter is removed
+import { Routes, Route, useLocation, Navigate } from "react-router-dom"; // BrowserRouter is removed
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./Components/Navbar/Navbar";
 import Hero from "./Components/Hero/Hero";
@@ -27,6 +27,7 @@ import Partners from "./Components/Partners/partners";
 import Contact from "./Components/Contact/Contact";
 import Shop from "./Components/Shop/Shop";
 import Loader from "./Components/Loader/Loader";
+import CharactersPage from "./Components/Characters/CharactersPage";
 
 // This component handles scrolling to the top of the page on route changes.
 const ScrollToTop = () => {
@@ -43,7 +44,8 @@ import Cursor from "./Components/Cursor/Cursor";
 
 const App = () => {
   const [isPlay, setIsPlay] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  /* [NEW] Initialized to true to show loader on first load */
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
   const togglePlay = () => {
@@ -51,8 +53,13 @@ const App = () => {
   };
 
   useLayoutEffect(() => {
-    // Artificial delay removed for performance
-    setIsLoading(false);
+    /* [MODIFY] Added delay to simulate loading or ensure assets are ready */
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -106,6 +113,10 @@ const App = () => {
           } />
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/shop" element={<Shop />} />
+          {/* Character Routes */}
+          <Route path="/characters" element={<Navigate to="/characters/leader" replace />} />
+          <Route path="/characters/:id" element={<CharactersPage />} />
+
           <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/content" element={

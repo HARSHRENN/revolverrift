@@ -8,9 +8,9 @@ import poster4 from '../../assets/newassets/GUN4.png';
 const items = [
     {
         id: 1,
-        title: 'MAIN',
+        title: 'CHARACTERS',
         image: poster1,
-        link: '#',
+        link: '/characters',
     },
     {
         id: 2,
