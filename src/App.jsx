@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom"; // BrowserRouter is removed
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./Components/Navbar/Navbar";
@@ -44,22 +44,54 @@ import Cursor from "./Components/Cursor/Cursor";
 
 const App = () => {
   const [isPlay, setIsPlay] = useState(false);
-  /* [NEW] Initialized to true to show loader on first load */
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
+  const isFirstLoad = useRef(true);
 
   const togglePlay = () => {
     setIsPlay(!isPlay);
   };
 
   useLayoutEffect(() => {
-    /* [MODIFY] Added delay to simulate loading or ensure assets are ready */
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    if (isFirstLoad.current) {
+      // Initial load: Wait for BOTH minimum time AND window.load
+      setIsLoading(true);
 
-    return () => clearTimeout(timer);
+      const handleLoadCompletion = () => {
+        setIsLoading(false);
+        isFirstLoad.current = false;
+      };
+
+      const minTime = 2000;
+      const startTime = Date.now();
+
+      const onWindowLoad = () => {
+        const elapsed = Date.now() - startTime;
+        const remaining = minTime - elapsed;
+
+        if (remaining > 0) {
+          setTimeout(handleLoadCompletion, remaining);
+        } else {
+          handleLoadCompletion();
+        }
+      };
+
+      if (document.readyState === "complete") {
+        onWindowLoad();
+      } else {
+        window.addEventListener("load", onWindowLoad);
+      }
+
+      return () => window.removeEventListener("load", onWindowLoad);
+    } else {
+      // Subsequent navigations: Use fixed timer
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
   }, [location.pathname]);
 
   useEffect(() => {

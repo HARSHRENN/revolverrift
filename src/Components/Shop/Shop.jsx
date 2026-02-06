@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import bgImage from '../../assets/Texturelabs_Grunge_353M.webp';
+import bgImage from '../../assets/Texturelabs_Grunge_353M.jpg';
 import ProductCard from './ProductCard';
 import { getProducts } from '../../api/strapi';
 
@@ -25,12 +25,9 @@ function Shop() {
 
     return (
         <section
-            className="min-h-screen w-full bg-black text-white relative bg-cover bg-fixed bg-center"
+            className=" text-white relative bg-cover bg-fixed bg-center"
             style={{ backgroundImage: `url(${bgImage})` }}
         >
-            {/* Dark overlay to ensure text readability and match aesthetic */}
-            <div className="absolute inset-0 bg-black/80 pointer-events-none" />
-
             <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
                 <div className="flex flex-col items-center mb-16 space-y-4">
                     <h1 className="font-custom text-5xl md:text-7xl text-white tracking-widest uppercase text-center">
