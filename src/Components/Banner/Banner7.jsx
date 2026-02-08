@@ -16,7 +16,7 @@ const Banner7 = () => {
             data-aos-offset="200"
             data-aos-once="true"
             className="text-[clamp(1.8rem,4vw,3rem)] font-bold text-[#e4d6c3]"
-            style={{ fontFamily: "'CustomGameFont', serif" }}
+            style={{ fontFamily: "'Cinzel', serif" }}
           >
             A Huge Thank You to Our Early Supporters
           </h1>

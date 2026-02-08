@@ -60,7 +60,7 @@ const SlantedGallery = () => {
                     <div className="absolute inset-0 w-full h-full md:skew-x-[15deg] md:scale-x-125 overflow-hidden origin-center bg-black">
                         {/* Actual Image */}
                         <div
-                            className="absolute inset-[-20%] w-[140%] h-full scale-125 transition-transform duration-700 ease-out group-hover:scale-110"
+                            className="absolute inset-0 md:inset-[-20%] w-full md:w-[140%] h-full scale-110 md:scale-125 transition-transform duration-700 ease-out group-hover:scale-110"
                             style={{
                                 backgroundImage: `url(${item.image})`,
                                 backgroundSize: 'cover',

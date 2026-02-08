@@ -34,9 +34,9 @@ const testimonials = [
 
 const TestimonialSlider = () => {
   return (
-    <section 
-     style={{ backgroundImage: `url(${bgImage})` }}
-    className="
+    <section
+      style={{ backgroundImage: `url(${bgImage})` }}
+      className="
     w-full min-h-screen  bg-cover bg-fixed flex flex-col  items-center bg-black text-white 
     px-4 
     pt-28 sm:pt-16 md:pt-40 
@@ -45,7 +45,7 @@ const TestimonialSlider = () => {
       <div className="w-full max-w-5xl text-center mb-10 md:mb-16 px-2 sm:px-4">
         <h1
           className="text-[clamp(1.8rem,4vw,3rem)] font-bold text-[#e4d6c3]"
-          style={{ fontFamily: "'CustomGameFont', serif" }}
+          style={{ fontFamily: "'Cinzel', serif" }}
         >
           Developer&apos;s Insights
         </h1>
@@ -130,28 +130,28 @@ const TestimonialSlider = () => {
           ))}
         </Swiper>
         <div className="mt-12 pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
-  <div className="w-full">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="py-12 grid grid-cols-2 sm:grid-cols-4 place-items-center gap-8 sm:gap-16">
-        {[logo1, logo2, logo3, logo4].map((src, i) => (
-          <div
-            key={i}
-            className="aspect-square w-24 sm:w-28 lg:w-32 flex items-center justify-center"
-          >
-            <img
-              src={src}
-              alt={`Partner Logo ${i + 1}`}
-              className={`max-h-full max-w-full object-contain opacity-100 hover:scale-105 transition-transform duration-300
+          <div className="w-full">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="py-12 grid grid-cols-2 sm:grid-cols-4 place-items-center gap-8 sm:gap-16">
+                {[logo1, logo2, logo3, logo4].map((src, i) => (
+                  <div
+                    key={i}
+                    className="aspect-square w-24 sm:w-28 lg:w-32 flex items-center justify-center"
+                  >
+                    <img
+                      src={src}
+                      alt={`Partner Logo ${i + 1}`}
+                      className={`max-h-full max-w-full object-contain opacity-100 hover:scale-105 transition-transform duration-300
                 ${i === 2 || i === 3 ? 'scale-95' : ''}`}
-              loading="lazy"
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
 
         <div className="">
           <Banner7 />

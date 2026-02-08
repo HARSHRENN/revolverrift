@@ -8,7 +8,7 @@ const ShopPreview = () => {
     return (
         <div className="bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-lg max-w-sm w-full animate-fadeIn transition-all hover:bg-black/60">
             <div className="flex justify-between items-center mb-4">
-                <h3 className="text-white font-custom text-xl tracking-wider uppercase">Gear Up</h3>
+                <h3 className="text-white font-vintage text-xl tracking-wider uppercase">Gear Up</h3>
                 <Link to="/shop" className="text-xs font-mono text-red-500 hover:text-red-400 uppercase tracking-widest border-b border-red-500/50 pb-0.5 transition-colors">
                     View All
                 </Link>

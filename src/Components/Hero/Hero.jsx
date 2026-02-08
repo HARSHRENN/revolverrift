@@ -1,17 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react';
-import bgVideo from '../../assets/newassets/2.mp4';
+import poster2 from '../../assets/posters/fullposter1.png';
+import movingVideo from '../../assets/posters/moving video.mp4';
 import crackedBox from '../../assets/image.png';
-import revolverTitle from '../../assets/IMG.png';
-import bgVideo2 from '../../assets/mp5.mp4';
 import SlantedGallery from './SlantedGallery';
+import CinematicSlider from './CinematicSlider';
 
 import ShopPreview from '../Shop/ShopPreview';
 
 const HeroCountdown = () => {
     const sectionRef = useRef(null);
-    const videoRef = useRef(null);
-    const overlay1Ref = useRef(null);
-    const overlay2Ref = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        // Set initial value
+        handleResize();
+
+        // Add event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // const calculateTimeLeft = () => {
     //   const targetDate = new Date('2025-08-29T13:00:00+02:00');
@@ -34,168 +47,72 @@ const HeroCountdown = () => {
     //   minutes: '30',
     // });
 
-    // Function to update background height
-    const updateBackgroundHeight = () => {
-        if (sectionRef.current && videoRef.current && overlay1Ref.current && overlay2Ref.current) {
-            const sectionHeight = sectionRef.current.scrollHeight;
-            const height = `${Math.max(sectionHeight, window.innerHeight)}px`;
-
-            videoRef.current.style.height = height;
-            overlay1Ref.current.style.height = height;
-            overlay2Ref.current.style.height = height;
-        }
-    };
-
-    useEffect(() => {
-        // Multiple attempts to update height at different timing intervals
-        const updateWithDelay = () => {
-            updateBackgroundHeight();
-            setTimeout(updateBackgroundHeight, 100);
-            setTimeout(updateBackgroundHeight, 300);
-            setTimeout(updateBackgroundHeight, 500);
-            setTimeout(updateBackgroundHeight, 1000);
-        };
-
-        // Initial update
-        updateWithDelay();
-
-        // Update when images load
-        const images = sectionRef.current?.querySelectorAll('img');
-        images?.forEach(img => {
-            if (img.complete) {
-                updateBackgroundHeight();
-            } else {
-                img.addEventListener('load', updateBackgroundHeight);
-                img.addEventListener('error', updateBackgroundHeight);
-            }
-        });
-
-        // Update height on window resize
-        const handleResize = () => {
-            setTimeout(updateBackgroundHeight, 50);
-        };
-
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('load', updateBackgroundHeight);
-
-        // Use ResizeObserver to watch for content changes
-        const resizeObserver = new ResizeObserver(() => {
-            setTimeout(updateBackgroundHeight, 10);
-        });
-
-        if (sectionRef.current) {
-            resizeObserver.observe(sectionRef.current);
-        }
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('load', updateBackgroundHeight);
-            images?.forEach(img => {
-                img.removeEventListener('load', updateBackgroundHeight);
-                img.removeEventListener('error', updateBackgroundHeight);
-            });
-            resizeObserver.disconnect();
-        };
-    }, []);
-
-    useEffect(() => {
-        // const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 60000);
-        // return () => clearInterval(timer);
-    }, []);
-
     return (
-        <div className="bg-black">
-            <section ref={sectionRef} className="relative w-full text-white font-serif" style={{ minHeight: '100vh' }}>
-                {/* 🎥 Background Video */}
+        <div className="bg-black overflow-x-hidden">
+            <section ref={sectionRef} className="relative w-full text-white font-serif overflow-hidden" style={{ minHeight: '100vh', maxWidth: '100vw' }}>
+                {/* Background Video */}
                 <video
-                    ref={videoRef}
-                    className="absolute top-0 left-0 w-full object-cover z-0"
-                    style={{ minHeight: '100vh' }}
-                    src={bgVideo}
+                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    src={movingVideo}
                     autoPlay
                     loop
                     muted
                     playsInline
                 />
 
-                {/* 📳 Overlays */}
-                <div
-                    ref={overlay1Ref}
-                    className="absolute top-0 left-0 w-full z-10"
+                {/* Background Image (Commented Out) */}
+                {/* <div
+                    className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat z-0"
                     style={{
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.65))',
+                        backgroundImage: `url(${poster2})`,
+                        backgroundPosition: isMobile ? '40% center' : 'center center',
                         minHeight: '100vh'
                     }}
-                />
-                <div
-                    ref={overlay2Ref}
-                    className="absolute top-0 left-0 w-full z-15 pointer-events-none"
-                    style={{
-                        background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%)',
-                        minHeight: '100vh'
-                    }}
-                />
+                /> */}
 
                 {/* 📜 Content */}
-                <div className="relative z-20 flex flex-col md:flex-row items-center sm:px-6 lg:px-[5vw] py-10 w-full min-h-screen">
+                <div className="relative z-20 flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 lg:px-8 py-8 md:py-10 w-full min-h-screen max-w-screen-2xl mx-auto">
 
                     {/* Left/Center Content */}
-                    <div className="flex-1 flex flex-col items-center text-center">
-                        {/* Top content container */}
-                        <div className="flex flex-col items-center w-full mt-[10vh] mb-3">
-                            {/* 🖼️ Logo */}
-                            <img
-                                src={revolverTitle}
-                                alt="Revolver Rift Title"
-                                className="w-[clamp(250px,45vw,500px)] mb-2"
-                                style={{ animation: 'bounceDrop 1.2s ease-out forwards' }}
-                            />
-                        </div>
+                    <div className="flex-1 flex flex-col items-center justify-end h-full pb-32 md:pb-40 text-center w-full">
+
 
                         {/* Bottom message */}
-                        <div className="max-w-4xl mx-auto px-4 pb-10">
-                            <h2 className="text-white text-2xl md:text-3xl lg:text-4xl leading-relaxed mb-8">
+                        <div className="max-w-4xl mx-auto px-2 sm:px-4 w-full">
+                            <h2 className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed mb-4 sm:mb-6 md:mb-8 px-2">
                                 Hardcore PvPvE extraction shooter game. <br />
                                 Wishlisting available soon on PC stores.
                             </h2>
 
                             {/* Store Logos */}
-                            <div className="flex items-center justify-center gap-3 md:gap-4 mt-6">
+                            <div className="flex items-center justify-center gap-3 md:gap-4 mt-4 md:mt-6">
                                 <img
                                     src="https://res.cloudinary.com/df7s2xmz1/image/upload/v1765701093/24babc47-9fc8-4b0a-a09f-74e7e51b09a6.png"
                                     alt="Steam"
-                                    className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                                    className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                                 />
                                 <img
                                     src="https://res.cloudinary.com/df7s2xmz1/image/upload/v1765705048/image-removebg-preview_su2ttv.png"
                                     alt="PC Store"
-                                    className="h-12 md:h-16 lg:h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                                    className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                                 />
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Side - Shop Preview (Hidden on small mobile) */}
-                    <div className="hidden md:block absolute right-[5vw] top-1/2 -translate-y-1/2 z-30 opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]">
+                    {/* Right Side - Shop Preview (Hidden on tablet and mobile) */}
+                    {<div className="hidden lg:block absolute right-4 xl:right-8 top-1/2 -translate-y-1/2 z-30 opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards] max-w-[300px]">
                         <ShopPreview />
-                    </div>
+                    </div>}
                 </div>
+
+                {/* Bottom Fade Gradient */}
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] to-transparent z-30 pointer-events-none" />
             </section>
+
+            <CinematicSlider />
 
             <SlantedGallery />
-
-
-            {/* Second Video Section */}
-            <section className="relative w-full h-screen">
-                <video
-                    className="w-full h-full object-cover"
-                    src={bgVideo2}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                />
-            </section>
         </div >
     );
 };

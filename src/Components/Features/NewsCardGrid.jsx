@@ -79,7 +79,7 @@ export const NewsCardGrid = () => {
         <div className="flex justify-center items-center mb-12 mt-0 py-20">
           <h1
             className="text-[clamp(1.8rem,4vw,3rem)] font-bold text-[#e4d6c3]"
-            style={{ fontFamily: "'CustomGameFont', serif" }}
+            style={{ fontFamily: "'Cinzel', serif" }}
           >
             Developer Blogs
           </h1>
@@ -101,7 +101,7 @@ export const NewsCardGrid = () => {
               {/* <div className="flex justify-center mb-3">{news.icon}</div> */}
               <h2
                 className="text-2xl font-bold mb-3"
-                style={{ fontFamily: "'CustomGameFont', serif", color: "#b89a6f" }}
+                style={{ fontFamily: "'Cinzel', serif", color: "#b89a6f" }}
               >
                 {news.title}
               </h2>
@@ -260,7 +260,7 @@ export const BlogPostPage = () => {
       >
         <h1
           className="text-4xl font-bold text-[#b89a6f]"
-          style={{ fontFamily: "'CustomGameFont', serif" }}
+          style={{ fontFamily: "'Cinzel', serif" }}
         >
           Blog Post Not Found
         </h1>
@@ -278,7 +278,7 @@ export const BlogPostPage = () => {
       <div className="max-w-screen-md mx-auto px-4 sm:px-6 lg:px-8">
         <h1
           className="text-5xl font-bold mb-6 text-[#f4e1c1]"
-          style={{ fontFamily: "'CustomGameFont', serif" }}
+          style={{ fontFamily: "'Cinzel', serif" }}
         >
           {blogPost.title}
         </h1>

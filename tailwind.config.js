@@ -5,10 +5,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        
-  vintage: ['Cinzel', 'serif'],
-  custom: ['CustomGameFont', 'serif'], // 👈 This matches your JSX className
-},
+
+        vintage: ['Cinzel', 'serif'],
+        custom: ['Cinzel', 'serif'], // 👈 override to Cinzel
+        sans: ['Cinzel', 'serif'],
+      },
       colors: {
         primary: "#00C2FF",
         secondary: "#DD0BFF",

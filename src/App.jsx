@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom"; // Brow
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./Components/Navbar/Navbar";
 import Hero from "./Components/Hero/Hero";
+import GodLikeHero from "./Components/Hero/GodLikeHero";
 import Quotes from "./Components/Quotes/Quotes";
 import Banner from "./Components/Banner/Banner";
 import Banner2 from "./Components/Banner/Banner2";
@@ -121,7 +122,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <Hero togglePlay={togglePlay} />
+                <Hero />
                 {/* <Banner togglePlay={togglePlay} /> */}
                 {/* <Banner8 togglePlay={togglePlay} /> */}
                 {/* <Banner9 togglePlay={togglePlay} /> */}
